@@ -1,0 +1,88 @@
+---
+import heroBg from '../assets/imgs/hero.png';
+---
+<div
+  class="hero"
+  style={`background-image: url(${heroBg.src});`}
+>
+    <div class="content">
+        <h1 class="text-5xl">
+            Marca que se impõe do nome ao sistema visual.
+        </h1>
+        <a class="btn" href="#orcamento">
+            Solicite um orçamento
+        </a>
+    </div>
+
+    <a class="arrow" href="#portfolio">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 17L12 7M12 17L8 13M12 17L16 13M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </a>
+</div>
+
+<style>
+    .hero {
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        filter: grayscale(100%);
+        flex-direction: column;
+        gap: 7rem;
+        padding-bottom: 4rem;
+    }
+
+    .content {
+        text-align: center;
+        color: white;
+        width: 50%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        padding-left: 12rem;
+    }
+
+    .content h1 {
+        font-size: 4.5rem;
+        letter-spacing: -3px;
+    }
+
+    .btn {
+        background-color: #1e1d1de8;
+        color: #fff;
+        padding: 0.8rem 2rem;
+        border-radius: 35px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: -1px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        width: fit-content;
+    }
+
+    .btn:hover {
+        background-color: #fff;
+        color: #1e1d1de8;
+    }
+
+    .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .arrow svg {
+        width: 40px;
+        height: 40px;
+        margin-top: 2rem;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .arrow svg:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+</style>

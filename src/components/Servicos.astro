@@ -1,0 +1,179 @@
+---
+import servicos from '../data/servicos.json';
+---
+
+<div id="servicos">
+  <div class="container">
+    <h2>Conheça nossos Planos e Serviços prestados.</h2>
+
+    <div class="lista-servicos">
+      {servicos.map((servico, index) => (
+        <div class={`servico ${index === 0 ? 'aberto' : ''}`}>
+          <button class="servico-toggle">
+            <div class="servico-titulo">
+              <span class="numero">{servico.numero}.</span>
+              <span class="nome">{servico.nome}</span>
+              {servico.destaque && (
+                <>
+                  <span class="linha"></span>
+
+                  <span class="destaque">
+                    {servico.destaque}
+                  </span>
+                </>
+              )}
+            </div>
+
+            <span class="seta"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 4V20M12 20L8 16M12 20L16 16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></span>
+          </button>
+
+          <div class="descricao">
+            <p>{servico.descricao}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <a class="btn-orcamento" href="#orcamento">
+      Solicite um orçamento
+    </a>
+  </div>
+</div>
+
+<script>
+  const botoes = document.querySelectorAll('.servico-toggle');
+
+  botoes.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      const servicoAtual = botao.closest('.servico');
+
+      if (!servicoAtual) return;
+
+      const jaEstaAberto = servicoAtual.classList.contains('aberto');
+
+      document.querySelectorAll('.servico').forEach((servico) => {
+        servico.classList.remove('aberto');
+      });
+
+      if (!jaEstaAberto) {
+        servicoAtual.classList.add('aberto');
+      }
+    });
+  });
+</script>
+
+<style>
+  #servicos {
+    background-color: #121212;
+    padding: 5rem;
+  }
+
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin-bottom: 3rem;
+  }
+
+  .lista-servicos {
+    width: 100%;
+  }
+
+  .servico {
+    border-bottom: 1px solid #333;
+  }
+
+  .servico-toggle {
+    width: 100%;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .servico-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  .numero,
+  .nome {
+    white-space: nowrap;
+  }
+
+  .linha {
+    width: 55px;
+    height: 1px;
+    background-color: #fff;
+  }
+
+  .destaque {
+    background-color: #fff;
+    color: #121212;
+
+    padding: 0.25rem 0.6rem;
+
+    text-transform: uppercase;
+  }
+
+  .seta svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.4s ease;
+  }
+
+  .descricao {
+    display: none;
+    padding-bottom: 1.5rem;
+  }
+
+  .descricao p {
+    color: #ddd;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    max-width: 85%;
+  }
+
+  .btn-orcamento {
+    background-color: #fff;
+    color: #1e1d1de8;
+    padding: 0.9rem 2rem;
+    margin: 4rem auto 0;
+    border-radius: 35px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: -1px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    width: fit-content;
+  }
+
+  .btn-orcamento:hover {
+    background-color: #000000;
+    color: #fff;
+  }
+</style>
+
+<style is:global>
+  .servico.aberto .descricao {
+    display: block;
+  }
+
+  .servico.aberto .seta svg {
+    transform: rotate(180deg);
+  }
+</style>

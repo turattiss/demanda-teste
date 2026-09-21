@@ -1,0 +1,74 @@
+---
+import { projetos } from '../data/portfolio.js'
+---
+
+<div id="portfolio" class="bg-black">
+    <div class="container">
+        {projetos.map((projeto) => (
+            <div class="projeto">
+                <img src={projeto.imagem.src} alt={projeto.nome} />
+
+                <div class="info">
+                    <span>{projeto.nome}</span>
+                    <span>{projeto.ano}</span>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<style>
+    #portfolio {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 0;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+        width: 100%;
+    }
+
+    .projeto {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        justify-content: center;
+    }
+
+    .projeto img {
+        width: 100%;
+        aspect-ratio: 686 / 428;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+    }
+
+    .projeto .info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 1rem;
+        background: rgba(20, 20, 20, 0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transform: translateY(100%);
+        transition: transform 0.5s ease-in-out, bottom 0.5s ease-in-out;
+        width: 80%;
+        border-radius: 30px;
+    }
+
+    .projeto:hover .info {
+        transform: translateY(0);
+        bottom: 20;
+    }
+</style>

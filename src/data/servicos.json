@@ -1,0 +1,26 @@
+[
+  {
+    "numero": "01",
+    "nome": "Consultoria de Branding",
+    "destaque": "PLANO EXPANSÃO",
+    "descricao": "Acompanhamento estratégico para alinhar marca e negócio: diagnóstico, direção e priorização focados em rebrand e crescimento."
+  },
+  {
+    "numero": "02",
+    "nome": "Identidade + Estratégia",
+    "destaque": "PLANO ESSÊNCIA",
+    "descricao": "Sistema de identidade com direção estratégica: organiza a mensagem, fortalece o posicionamento e padroniza as aplicações."
+  },
+  {
+    "numero": "03",
+    "nome": "Identidade Visual",
+    "destaque": "PLANO ORIGEM",
+    "descricao": "Identidade visual essencial, alinhada ao posicionamento, para estabelecer uma base clara e consistente nas suas aplicações do dia a dia."
+  },
+  {
+    "numero": "04",
+    "nome": "Naming",
+    "destaque": null,
+    "descricao": "Criação de nomes alinhados à estratégia e ao posicionamento da sua marca, claros e prontos para identidade visual, site e comunicação."
+  }
+]
