@@ -1,0 +1,328 @@
+---
+import logo from '../assets/imgs/logo.png';
+const { t, isEnglish = false } = Astro.props;
+import decor from '../assets/imgs/decor2.png';
+---
+
+<footer class="footer-desktop" style={`--decor: url("${decor.src}")`}>
+    <div class="coluna-principal">
+        <div class="logo">
+            <img src={logo.src} alt="Douglas Vaz" />
+        </div>
+
+        <div class="marca">
+            <h2>{t.footer.tagline}</h2>
+            <div class="creditos">
+                <p class="destaque">ESTÚDIO DOUG VAZ ©2025</p>
+                <p>{t.footer.rights}</p>
+                <p>{t.footer.made}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="redes">
+        <span>{t.footer.networks}</span>
+        <div class="links">
+            <a href="https://www.instagram.com/eidouglasvaz" target="_blank" rel="noopener noreferrer">
+                INSTAGRAM
+            </a>
+            <span>|</span>
+            <a href="https://www.behance.net/douglasvazbrands" target="_blank" rel="noopener noreferrer">
+                BEHANCE
+            </a>
+            <span>|</span>
+            <a href="https://www.linkedin.com/in/douglas-vaz-4117671aa" target="_blank" rel="noopener noreferrer">
+                LINKEDIN
+            </a>
+        </div>
+    </div>
+
+    <div class="email">
+        <span>{t.footer.contact}</span>
+        <a href="mailto:hello@douglasvazbrands.com">
+            HELLO@DOUGLASVAZBRANDS.COM
+        </a>
+    </div>
+
+    <a href={isEnglish ? '/en/#hero' : '/#hero'} class="seta" aria-label={t.footer.back}>
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 17V7M12 7L8 11M12 7L16 11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </a>
+</footer>
+
+<footer class="footer-mobile" style={`--decor: url("${decor.src}")`}>
+    <div class="mobile-topo">
+        <div class="mobile-logo">
+            <img src={logo.src} alt="Douglas Vaz" />
+        </div>
+        <a href={isEnglish ? '/en/#hero' : '/#hero'} class="mobile-seta" aria-label={t.footer.back}>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 17V7M12 7L8 11M12 7L16 11M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="mobile-contatos">
+        <div class="mobile-redes">
+            <span>{t.footer.networks}</span>
+            <div class="mobile-links">
+                <a href="https://www.instagram.com/eidouglasvaz" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+                <span aria-hidden="true">|</span>
+                <a href="https://www.behance.net/douglasvazbrands" target="_blank" rel="noopener noreferrer">BEHANCE</a>
+                <span aria-hidden="true">|</span>
+                <a href="https://www.linkedin.com/in/douglas-vaz-4117671aa" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+            </div>
+        </div>
+
+        <div class="mobile-email">
+            <span>{t.footer.contact}</span>
+            <a href="mailto:hello@douglasvazbrands.com">HELLO@DOUGLASVAZBRANDS.COM</a>
+        </div>
+    </div>
+
+    <div class="mobile-marca">
+        <h2>{t.footer.tagline}</h2>
+        <div class="mobile-creditos">
+            <p class="destaque">ESTÚDIO DOUG VAZ © 2025</p>
+            <p>{t.footer.rights}</p>
+            <p>{t.footer.made}</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-desktop {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr auto;
+        align-items: start;
+        gap: 3rem;
+        width: 100%;
+        padding: 1.5rem 2.5rem 1rem;
+        background-color: #fff;
+        background-image: var(--decor);
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: 100% auto;
+        color: #111;
+    }
+
+    .coluna-principal {
+        display: flex;
+        flex-direction: column;
+        min-height: 150px;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        filter: invert(1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .logo img:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    .marca {
+        margin-top: auto;
+    }
+
+    .marca h2 {
+        width: fit-content;
+        margin: 0 0 0.7rem;
+        font-size: 1.35rem;
+        font-weight: 400;
+        letter-spacing: -1px;
+        border-bottom: 2px solid #111;
+    }
+
+    .creditos .destaque {
+        font-size: .75rem;
+        color: black;
+    }
+
+    .creditos p {
+        margin: 0;
+        font-size: 0.60rem;
+        line-height: 1.5;
+        color: #777;
+    }
+
+    .redes, .email {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .redes > span, .email > span {
+        font-size: 0.65rem;
+        color: #777;
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .links a, .email a {
+        color: #111;
+        text-decoration: none;
+        font-size: 0.7rem;
+    }
+
+    .links a:hover, .email a:hover {
+        opacity: 0.6;
+    }
+
+    .seta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #111;
+    }
+
+    .seta svg {
+        width: 35px;
+        height: 35px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .seta svg:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    .footer-mobile { 
+        display: none; 
+    }
+
+    @media (max-width: 968px) {
+        .footer-desktop { 
+            display: none; 
+        }
+
+        .footer-mobile {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+            width: 100%;
+            min-height: 380px;
+            padding: clamp(1.5rem, 7vw, 2.5rem);
+            background-color: #fff;
+            background-image: var(--decor);
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            background-size: auto 32%;
+            color: #111;
+        }
+
+        .mobile-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .mobile-logo img {
+            display: block;
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            filter: invert(1);
+        }
+
+        .mobile-seta {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            color: #111;
+        }
+
+        .mobile-seta svg { 
+            width: 42px; 
+            height: 42px; 
+        }
+
+        .mobile-contatos {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-redes, .mobile-email {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .mobile-redes > span, .mobile-email > span {
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .mobile-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.35rem, 2vw, 0.8rem);
+            white-space: nowrap;
+        }
+
+        .mobile-links a, .mobile-email a {
+            color: #111;
+            font-size: clamp(0.68rem, 2.5vw, 0.9rem);
+            text-decoration: none;
+        }
+
+        .mobile-marca { 
+            position: relative;
+            z-index: 1; 
+        }
+
+        .mobile-marca h2 {
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 0 0.6rem;
+            border-bottom: 2px solid #111;
+            font-size: clamp(1.15rem, 5vw, 1.55rem);
+            font-weight: 400;
+            letter-spacing: -0.06em;
+        }
+
+        .mobile-creditos p { 
+            margin: 0;
+            color: #777;
+            font-size: 0.55rem;
+            line-height: 1.5;
+        }
+
+        .mobile-creditos .destaque { 
+            color: #111;
+            font-size: 0.65rem;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .footer-mobile { 
+            min-height: 360px; 
+            padding: 1.25rem
+        }
+
+        .mobile-links {
+            gap: 0.3rem;
+        }
+
+        .mobile-links a {
+            font-size: 0.62rem;
+        }
+
+        .mobile-email a { 
+            font-size: 0.72rem; 
+            letter-spacing: -0.04em; 
+        }
+    }
+</style>

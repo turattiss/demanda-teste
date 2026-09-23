@@ -27,18 +27,21 @@ import { projetos } from '../data/portfolio.js'
 
     .container {
         display: grid;
-        grid-template-columns: repeat(2, minmax(300px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 2rem;
         padding: 2rem 0;
-        width: 100%;
+        width: min(100% - 2rem, 1200px);
+        justify-items: center; 
     }
 
     .projeto {
         display: flex;
         position: relative;
         overflow: hidden;
-        border-radius: 10px;
+        border-radius: 5px;
         justify-content: center;
+        transition: transform 0.5s ease-in-out;
+        width: 100%; 
     }
 
     .projeto img {
@@ -67,8 +70,39 @@ import { projetos } from '../data/portfolio.js'
         border-radius: 30px;
     }
 
+    .projeto:hover {
+        transform: scale(1.03);
+    }
+
     .projeto:hover .info {
         transform: translateY(0);
         bottom: 20;
+    }
+
+    @media (max-width: 640px) {
+        #portfolio { 
+            padding: 2rem 0; 
+        }
+
+        .container { 
+            grid-template-columns: 1fr; 
+            gap: 1.5rem; 
+            padding: 1rem 0;
+        }
+
+        .projeto {
+            width: 90%;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 968px) {
+        .projeto .info { 
+            transform: translateY(0); 
+            bottom: 10px; 
+            width: calc(100% - 1.5rem); 
+            padding: 0.75rem;
+            font-size: .75rem; 
+        }
     }
 </style>

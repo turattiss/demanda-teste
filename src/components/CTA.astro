@@ -1,0 +1,143 @@
+---
+import CtaBg from '../assets/imgs/cta.jpg';
+const { t } = Astro.props;
+import imgDouglas from '../assets/imgs/douglas2.jpg';
+import BotaoContato from './BotaoContato.astro';
+---
+
+<div id="cta" style={`background-image: url(${CtaBg.src});`}>
+    <div class="imagem">
+        <img src={imgDouglas.src} alt="Douglas Vaz" />
+    </div>
+
+    <div class="conteudo">
+        <div class="texto">
+            <h2>{t.cta.title}</h2>
+            <p>{t.cta.text}</p>
+        </div>
+        <div class="area-botao">
+            <BotaoContato texto={t.cta.contact} href={t.lang === 'en' ? '/en/#orcamento' : '/#orcamento'} />
+        </div>
+    </div>
+</div>
+
+<style>
+    #cta {
+        display: flex;
+        gap: 6rem;
+        flex-direction: row;
+        align-items: center;
+        padding: 8rem clamp(1.5rem, 8vw, 8rem);
+        position: relative;
+        overflow: hidden;
+    }
+
+    #cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background-color: rgba(0, 0, 0, 0.55);
+
+        z-index: 0;
+    }
+
+    #cta > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .conteudo {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding-left: 50px;
+        margin-left: 20px;
+        gap: 2rem;
+    }
+
+    .imagem {
+        width: 50%;
+        text-align: center;
+    }
+
+    .imagem img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        aspect-ratio: 5/6;
+        object-fit: cover;
+    }
+
+    .conteudo .texto {
+        width: 90%;
+    }
+
+    .conteudo .texto h2 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 30px;
+        letter-spacing: -1px;
+        line-height: 3.5rem;
+    }
+
+    .conteudo .texto p {
+        color: white;
+        font-size: 1.1rem;
+        letter-spacing: -0.5px;
+    }
+
+    .area-botao {
+        margin-top: 20px;
+    }
+
+    @media (max-width: 760px) {
+        #cta { 
+            flex-direction: column;
+            gap: 2rem;
+            padding: 3rem 2rem;
+        }
+
+        .imagem, .conteudo { 
+            width: 100%; 
+        }
+
+        .imagem img {
+            width: min(100%, 28rem);
+        }
+
+        .conteudo {
+            padding: 0;
+            margin: 0;
+        }
+
+        .conteudo .texto {
+            width: 100%;
+        }
+        .conteudo .texto h2 { 
+            font-size: clamp(2rem, 8vw, 3rem); line-height: 1.1; 
+        }
+
+        .area-botao {
+            justify-content: center;
+            display: flex;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 968px){
+        #cta { 
+            gap: 1rem;
+            padding: 3rem 1rem;
+        }
+
+        .conteudo {
+            padding: 0;
+            margin: 0;
+        }
+
+        .conteudo .texto h2 { 
+            font-size: clamp(1.5rem, 7vw, 3rem); line-height: 1.1; 
+        }
+    }
+</style>

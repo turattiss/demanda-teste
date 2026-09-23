@@ -1,26 +1,27 @@
 ---
 import heroBg from '../assets/imgs/hero.png';
+const { t, isEnglish = false } = Astro.props;
+import BotaoContato from './BotaoContato.astro';
 ---
+
 <div
-  class="hero"
-  style={`background-image: url(${heroBg.src});`}
+    id="hero"
+    style={`background-image: url(${heroBg.src});`}
 >
     <div class="content">
-        <h1 class="text-5xl">
-            Marca que se impõe do nome ao sistema visual.
-        </h1>
-        <a class="btn" href="#orcamento">
-            Solicite um orçamento
-        </a>
+        <h1 class="text-5xl">{t.hero.title}</h1>
+
+        <BotaoContato variante='escuro' texto={t.hero.contact} href={isEnglish ? '/en/#orcamento' : '/#orcamento'} />
     </div>
 
-    <a class="arrow" href="#portfolio">
+    <a class="arrow" href={isEnglish ? '/en/#portfolio' : '/#portfolio'}>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 17L12 7M12 17L8 13M12 17L16 13M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
     </a>
 </div>
 
 <style>
-    .hero {
+
+    #hero {
         background-size: cover;
         background-position: center;
         min-height: 100vh;
@@ -85,4 +86,38 @@ import heroBg from '../assets/imgs/hero.png';
         transform: scale(1.2);
         cursor: pointer;
     }
+
+    @media (max-width: 968px) {
+
+        #hero {
+            min-height: auto; 
+            background-position: top center;
+            gap: 3rem;
+            padding: 7rem 1.5rem 2rem;
+            align-items: center;
+        }
+
+        .content {
+            width: min(100%, 80%);
+            padding-left: 0;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .content h1 {
+            font-size: clamp(1rem, 8vw, 4rem);
+            letter-spacing: -1.5px;
+            text-align: center;
+        }
+        
+        .arrow {
+            margin-top: auto;
+        }
+
+        .arrow svg {
+            margin-top: 0;
+        }
+
+    }
+
 </style>

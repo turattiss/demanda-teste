@@ -1,0 +1,133 @@
+---
+import sobreImage from '../assets/imgs/douglas1.png';
+const { t } = Astro.props;
+import BotaoContato from './BotaoContato.astro';
+---
+
+<div id="sobre">
+
+    <div class="conteudo">
+
+        <div class="texto">
+
+            <h2>
+                Douglas Vaz
+            </h2>
+
+            <p>{t.about.paragraphs[0]}</p>
+
+            <p>{t.about.paragraphs[1]}</p>
+
+            <p>{t.about.paragraphs[2]}</p>
+
+            <p>{t.about.paragraphs[3]}</p>
+
+        </div>
+
+        <div class="area-botao">
+            <BotaoContato texto={t.about.contact} href={t.lang === 'en' ? '/en/#orcamento' : '/#orcamento'} />
+        </div>
+
+    </div>
+
+    <div class="imagem">
+
+        <img src={sobreImage.src} alt="Douglas Vaz" />
+
+    </div>
+
+</div>
+
+<style>
+
+    #sobre {
+        display: flex;
+        background-color: black;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8rem clamp(1.5rem, 8vw, 8rem);
+    }
+
+    .conteudo {
+        flex: 1.5;
+        padding-right: 50px;
+        margin-right: 20px;
+    }
+
+    .imagem {
+        flex: 1;
+        text-align: center;
+        max-width: 500px;
+    }
+
+    .imagem img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        aspect-ratio: 5/6;
+        object-fit: cover;
+    }
+
+    .conteudo h2 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 30px;
+    }
+
+    .conteudo .texto {
+        margin-bottom: 30px;
+        width: 90%;
+    }
+
+    .conteudo p {
+        color: white;
+        font-size: 1.1rem;
+        letter-spacing: -0.5px;
+        margin-bottom: 15px;
+    }
+
+    .area-botao {
+        margin-top: 20px;
+    }
+
+    @media (max-width: 968px) {
+
+        #sobre {
+            flex-direction: column-reverse;
+            gap: 2rem;
+            padding: 3rem 2rem;
+            align-items: stretch;
+        }
+
+        .conteudo {
+            padding: 2.5rem;
+            margin: 0;
+        }
+
+        .conteudo .texto {
+            width: 100%;
+        }
+
+        .conteudo p {
+            font-size: 1rem;
+        }
+
+        .imagem {
+            width: 100%;
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        .conteudo h2 {
+            font-size: 2.2rem;
+        }
+
+        .area-botao {
+            justify-content: center;
+            display: flex;
+            width: 100%;
+        }
+
+    }
+
+</style>

@@ -1,0 +1,300 @@
+---
+import BotaoContato from './BotaoContato.astro';
+
+interface Item {
+    numero?: string;
+    nome: string;
+    destaque?: string | null;
+    descricao: string;
+}
+
+interface Props {
+    titulo: string;
+    itens: Item[];
+    id: string;
+    tituloCentralizado?: boolean;
+    mostrarBotao?: boolean;
+    t?: any;
+}
+
+const { titulo, itens, id, t, tituloCentralizado = false, mostrarBotao = false } = Astro.props as Props;
+---
+
+<section id={id} class="lista-expansivel">
+
+    <div class="container">
+
+        <h2 class={tituloCentralizado ? 'centralizado' : ''}>
+            {titulo}
+        </h2>
+
+        <div class="lista-itens">
+
+            {itens.map((item, index) => (
+                <div class={`item ${index === 0 ? 'aberto' : ''}`}>
+
+                    <button type="button" class="item-toggle">
+
+                        <div class="item-titulo">
+
+                            {item.numero && (
+                                <span class="numero">{item.numero}.</span>
+                            )}
+
+                            <span class="nome">{item.nome}</span>
+
+                            {item.destaque && (
+                                <>
+                                    <span class="linha"></span>
+
+                                    <span class="destaque">
+                                        {item.destaque}
+                                    </span>
+                                </>
+                            )}
+
+                        </div>
+
+                        <span class="seta">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12 5V19M12 5L6 11M12 5L18 11"
+                                    stroke="#fff"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+
+                        </span>
+
+                    </button>
+
+                    <div class="descricao">
+                        <p>{item.descricao}</p>
+                    </div>
+
+                </div>
+            ))}
+
+        </div>
+
+        {mostrarBotao && (
+            <div class="area-botao">
+                <BotaoContato texto={t.button} href={t.lang === 'en' ? '/en/#orcamento' : '/#orcamento'} />
+            </div>
+        )}
+
+    </div>
+
+</section>
+
+<script>
+    const listas = document.querySelectorAll('.lista-expansivel');
+
+    listas.forEach((lista) => {
+
+        const botoes = lista.querySelectorAll('.item-toggle');
+
+        botoes.forEach((botao) => {
+
+            botao.addEventListener('click', () => {
+
+                const itemAtual = botao.closest('.item');
+
+                if (!itemAtual) return;
+
+                const jaEstaAberto = itemAtual.classList.contains('aberto');
+
+                lista.querySelectorAll('.item').forEach((item) => {
+                    item.classList.remove('aberto');
+                });
+
+                if (!jaEstaAberto) {
+                    itemAtual.classList.add('aberto');
+                }
+
+            });
+
+        });
+
+    });
+</script>
+
+<style>
+
+    .lista-expansivel {
+        background-color: #121212;
+        padding: 5rem;
+    }
+
+    .container {
+        max-width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    h2 {
+        color: #fff;
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+        margin-bottom: 3rem;
+    }
+
+    h2.centralizado {
+        text-align: center;
+    }
+
+    .lista-itens {
+        width: 100%;
+    }
+
+    .item {
+        border-bottom: 1px solid #333;
+    }
+
+    .item-toggle {
+        width: 100%;
+        padding: 1.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .item-titulo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.5rem;
+    }
+
+    .numero,
+    .nome {
+        white-space: nowrap;
+    }
+
+    .linha {
+        width: 55px;
+        height: 1px;
+        background-color: #fff;
+    }
+
+    .destaque {
+        background-color: #fff;
+        color: #121212;
+        padding: 0.25rem 0.6rem;
+        text-transform: uppercase;
+    }
+
+    .seta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .seta svg {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.4s ease;
+    }
+
+    .descricao {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+
+    .descricao p {
+        color: #ddd;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        max-width: 85%;
+        margin: 0;
+        padding-bottom: 1.5rem;
+    }
+
+    .area-botao {
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+    }
+
+    @media (max-width: 968px) {
+
+        .lista-expansivel {
+            padding: 3.5rem 2.25rem;
+        }
+
+        .lista-expansivel .descricao p {
+            max-width: 100%;
+            font-size: 1rem;
+        }
+
+        .area-botao {
+            margin-top: 2rem;
+        }
+    }
+
+</style>
+
+<style is:global>
+
+    .lista-expansivel .item.aberto .descricao {
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    .lista-expansivel .item.aberto .seta svg {
+        transform: rotate(180deg);
+    }
+
+    @media (max-width: 968px) {
+
+        .lista-expansivel .container {
+            max-width: 100%;
+        }
+
+        .lista-expansivel h2 {
+            font-size: clamp(1.8rem, 7vw, 2.4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .lista-expansivel .item-toggle {
+            gap: 0.75rem;
+            padding: 1.1rem 0;
+        }
+
+        .lista-expansivel .item-titulo {
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            text-align: left;
+        }
+
+        .lista-expansivel .numero,
+        .lista-expansivel .nome {
+            white-space: normal;
+        }
+
+        .lista-expansivel .linha {
+            display: none;
+        }
+
+        .lista-expansivel .destaque {
+            font-size: 0.7rem;
+        }
+
+    }
+
+</style>

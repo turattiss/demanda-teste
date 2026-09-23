@@ -1,0 +1,148 @@
+---
+const { t } = Astro.props;
+---
+
+<div id="orcamento">
+    <div class="texto-contato">
+        <h2>{t.form.title}</h2>
+        <p>{t.form.intro}</p>
+        <p>{t.form.help}</p>
+    </div>
+
+    <form action="https://formsubmit.co/3ba11f7ae6e4de178eb6b9d0d7d20d75" method="POST">
+        <input type="hidden" name="_subject" value="Nova solicitação de orçamento pelo site"/>
+        <input type="hidden" name="_captcha" value="false"/>
+        <input type="hidden" name="_next" value={t.lang === 'en' ? 'http://localhost:4321/en/obrigado' : 'http://localhost:4321/obrigado'}/>
+
+        <div class="campo">
+            <label for="nome">{t.form.name}</label>
+            <input type="text" id="nome" name="nome" placeholder={t.form.namePlaceholder} required/>
+        </div>
+
+        <div class="campo">
+            <label for="email">{t.form.email}</label>
+            <input type="email" id="email" name="email" placeholder={t.form.emailPlaceholder} required/>
+        </div>
+
+        <div class="campo">
+            <label for="telefone">{t.form.phone}</label>
+            <input type="tel" id="telefone" name="telefone" placeholder={t.form.phonePlaceholder} required/>
+        </div>
+
+        <div class="campo">
+            <label for="mensagem">{t.form.message}</label>
+            <textarea id="mensagem" name="mensagem" placeholder={t.form.messagePlaceholder} rows="5" required></textarea>
+        </div>
+
+        <button type="submit">{t.form.submit}</button>
+    </form>
+</div>
+
+<style>
+    #orcamento {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(2rem, 7vw, 6rem);
+    padding: 8rem clamp(1.5rem, 8vw, 8rem);
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+#orcamento .texto-contato {
+    width: 45%;
+}
+
+#orcamento form {
+    width: 45%;
+}
+
+.texto-contato h2 {
+    font-size: 2.5rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 2rem;
+}
+
+.texto-contato p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    letter-spacing: -1px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.campo label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #ccc;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    border-color: white;
+}
+
+.campo textarea {
+    resize: vertical;
+}
+
+#orcamento button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#orcamento button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(179, 179, 179, 0.5);
+}
+
+@media (max-width: 968px) {
+    #orcamento { 
+        flex-direction: column; 
+        gap: 2rem; 
+        padding: 4rem 1.25rem; 
+        align-items: stretch; 
+    }
+
+    #orcamento .texto-contato, #orcamento form {
+        width: 100%; 
+    }
+
+    .texto-contato h2 { 
+        font-size: 2rem; 
+    }
+
+    .texto-contato p { 
+        font-size: 1rem; 
+        letter-spacing: 0; 
+    }
+}
+</style>
