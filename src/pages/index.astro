@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import Hero from '../components/Hero.astro';
+import Portfolio from '../components/Portfolio.astro';
+import ListaExpansivel from '../components/ListaExpansivel.astro';
+import Sobre from '../components/Sobre.astro';
+import CTA from '../components/CTA.astro';
+import Instagram from '../components/Instagram.astro';
+import Formulario from '../components/Formulario.astro';
+
+import { translations } from '../data/translations.js';
+
+const t = translations.pt;
+---
+
+<Layout t={t} title={t.title}>
+    <section>
+        <Hero t={t} isEnglish={t.lang === 'en'} id="hero" />
+    </section>
+
+    <section>
+        <Portfolio />
+    </section>
+
+    <section>
+        <ListaExpansivel
+            titulo={t.servicesTitle}
+            itens={t.services}
+            t={t}
+            id="servicos"
+            mostrarBotao={true}
+        />
+    </section>
+
+    <section>
+        <Sobre t={t} />
+    </section>
+
+    <section>
+        <ListaExpansivel
+            id="entregaveis"
+            titulo={t.deliverablesTitle}
+            itens={t.deliverables}
+            t={t}
+            tituloCentralizado={true}
+            mostrarBotao={true}
+        />
+    </section>
+
+    <section>
+        <CTA t={t} />
+    </section>
+
+    <section>
+        <Instagram t={t} />
+    </section>
+
+    <Fragment slot="rodape">
+        <Formulario t={t} />
+    </Fragment>
+</Layout>

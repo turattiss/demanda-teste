@@ -1,0 +1,42 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import footerBg from '../assets/imgs/cta.jpg';
+import '../styles/global.css';
+import { translations } from '../data/translations.js';
+
+interface Props {
+    t: any;
+    title: string;
+}
+
+const { t = translations.pt, title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+
+<html lang={t.lang}>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{title ?? t.title}</title>
+        <meta name="description" content={t.description}>
+    </head>
+
+    <body>
+        <header>
+            <Header t={t} isEnglish={t.lang === 'en'} />
+        </header>
+
+        <main>
+            <slot />
+
+            <section id="rodape" style={`background-image: url(${footerBg.src});`}>
+                <slot name="rodape" />
+
+                <Footer t={t} isEnglish={t.lang === 'en'} />
+            </section>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThankYou from '../../components/ThankYou.astro';
+import { translations } from '../../data/translations.js';
+
+const t = translations.en;
+---
+
+<Layout t={t} title={t.thankYou.title}>
+    <Fragment slot="rodape">
+        <ThankYou t={t} />
+    </Fragment>
+</Layout>
