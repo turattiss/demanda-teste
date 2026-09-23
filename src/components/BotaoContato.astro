@@ -1,0 +1,60 @@
+---
+interface Props {
+  href?: string;
+  texto?: string;
+  variante?: 'claro' | 'escuro';
+}
+
+const {
+  href = '/#orcamento',
+  texto = 'Solicite um orçamento',
+  variante = 'claro'
+} = Astro.props as Props;
+---
+
+<a class={`btn-contato ${variante}`} href={href}>
+  {texto}
+</a>
+
+<style>
+    .btn-contato {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 35px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: -1px;
+      width: fit-content;
+      transition:
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .btn-contato:hover {
+      transform: scale(1.03);
+    }
+
+    .btn-contato.claro {
+      background-color: #fff;
+      color: #1e1d1de8;
+    }
+
+    .btn-contato.claro:hover {
+      background-color: #1e1d1de8;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-contato.escuro {
+      background-color: #1e1d1de8;
+      color: #fff;
+    }
+
+    .btn-contato.escuro:hover {
+      background-color: #fff;
+      color: #1e1d1de8;
+    }
+</style>
