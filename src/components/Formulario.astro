@@ -12,7 +12,7 @@ const { t } = Astro.props;
     <form action="https://formsubmit.co/3ba11f7ae6e4de178eb6b9d0d7d20d75" method="POST">
         <input type="hidden" name="_subject" value="Nova solicitação de orçamento pelo site"/>
         <input type="hidden" name="_captcha" value="false"/>
-        <input type="hidden" name="_next" value={t.lang === 'en' ? 'http://localhost:4321/en/obrigado' : 'http://localhost:4321/obrigado'}/>
+        <input type="hidden" name="_next" value={t.lang === 'en' ? 'http://demanda-teste.vercer.app/en/obrigado' : 'http://demanda-teste.vercel.app/obrigado'}/>
 
         <div class="campo">
             <label for="nome">{t.form.name}</label>
