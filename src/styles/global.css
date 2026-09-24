@@ -36,11 +36,31 @@ header, nav {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 110px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 section[id],
 [id] {
   scroll-margin-top: 110px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  a, button, .btn, .nav-link, .dropdown a, .logo img, .projeto, .post, .seta, .menu-toggle {
+    transition: none !important;
+  }
+
+  a:hover, button:hover, .btn:hover, .nav-link:hover,
+  .dropdown a:hover, .logo img:hover, .projeto:hover, .projeto:hover .info,
+  .post:hover img, .carrossel:hover .track, .seta svg:hover,
+  .links a:hover, .email a:hover, .btn-contato:hover,
+  .btn-contato.claro:hover, .btn-contato.escuro:hover {
+    transform: none !important;
+    background-color: initial !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
 }
 
 #rodape {
